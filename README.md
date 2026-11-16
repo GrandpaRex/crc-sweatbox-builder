@@ -62,7 +62,9 @@ and preview servers therefore forward read-only `GET /vnas/*` requests to
 
 If you host the built app as static files there is no forwarder, so either:
 
-- set **Setup → vNAS connection → base URL** to a forwarding proxy you run, or
+- run a forwarding proxy (`proxy/worker.js` is a ready-made Cloudflare Worker) and either
+  build with `VITE_VNAS_BASE=<its URL>` so it is built in and the setting is hidden (the
+  Pages workflow reads it from the `VNAS_BASE` repository secret), or enter it under **Setup → vNAS connection**, or
 - save the vNAS files yourself and drop them on the Setup page: the ARTCC JSON
   (`/api/artccs/ZBW`), an airport map (`/api/training/airports/BOS/map`), the
   training airport list (`/api/training/airports`) and `/Files/NavData.dat`.

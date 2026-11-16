@@ -5,6 +5,7 @@ import {
   loadArtcc,
   loadFiles,
   loadSummaries,
+  BUILT_IN_VNAS_BASE,
   loadVnasNav,
   setState,
   setVnasBase,
@@ -107,17 +108,19 @@ export function SetupPage() {
               ))}
             </ul>
           )}
-          <details>
-            <summary>vNAS connection</summary>
-            <p className="muted">
-              The vNAS API doesn't allow direct calls from a web page, so requests go through <code>/vnas</code>, which{" "}
-              <code>npm run dev</code> and <code>npm run preview</code> forward for you. If you host this app as static files,
-              point this at your own forwarding proxy or load the files by hand above.
-            </p>
-            <Field label="vNAS base URL">
-              <Text value={vnasBase} onChange={setVnasBase} mono />
-            </Field>
-          </details>
+          {!BUILT_IN_VNAS_BASE && (
+            <details>
+              <summary>vNAS connection</summary>
+              <p className="muted">
+                The vNAS API doesn't allow direct calls from a web page, so requests go through <code>/vnas</code>, which{" "}
+                <code>npm run dev</code> and <code>npm run preview</code> forward for you. If you host this app as static files,
+                point this at your own forwarding proxy or load the files by hand above.
+              </p>
+              <Field label="vNAS base URL">
+                <Text value={vnasBase} onChange={setVnasBase} mono />
+              </Field>
+            </details>
+          )}
         </Card>
       </div>
 

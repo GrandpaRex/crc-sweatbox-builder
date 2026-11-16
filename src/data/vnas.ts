@@ -134,12 +134,12 @@ export class VnasClient {
     try {
       res = await fetch(this.base.replace(/\/$/, "") + path);
     } catch {
-      throw new Error(`Could not reach vNAS at ${this.base}${path}`);
+      throw new Error(`Could not reach vNAS (${path}). Check your connection and try again.`);
     }
     const type = res.headers.get("content-type") ?? "";
     // A static host answers unknown paths with its own index.html.
     if (!res.ok || type.includes("text/html")) {
-      throw new Error(`vNAS request failed (${res.status}) for ${path}. Is the /vnas proxy running?`);
+      throw new Error(`vNAS request failed (${res.status}) for ${path}`);
     }
     return res;
   }

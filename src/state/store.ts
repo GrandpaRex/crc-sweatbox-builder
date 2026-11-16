@@ -57,7 +57,14 @@ function loadSaved(): Project {
   return newProject();
 }
 
+/**
+ * Set at build time (VITE_VNAS_BASE) for hosted copies that have their own
+ * vNAS forwarder. When present it is always used and the setting is hidden.
+ */
+export const BUILT_IN_VNAS_BASE: string = (import.meta.env?.VITE_VNAS_BASE ?? "").trim().replace(/\/$/, "");
+
 function savedBase(): string {
+  if (BUILT_IN_VNAS_BASE) return BUILT_IN_VNAS_BASE;
   try {
     return localStorage.getItem(BASE_KEY) || "/vnas";
   } catch {

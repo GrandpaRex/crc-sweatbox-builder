@@ -26,6 +26,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        env:
+          # Address of the vNAS forwarder (see proxy/worker.js), kept in the
+          # repository secret VNAS_BASE. Unset = the app shows the manual setting.
+          VITE_VNAS_BASE: ${{ secrets.VNAS_BASE }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
