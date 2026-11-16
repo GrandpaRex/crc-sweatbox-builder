@@ -1,5 +1,7 @@
 # CRC Sweatbox Builder
 
+This app is vibe coded, take that as you will. Enjoy it if you use it, use issues to report bugs.
+
 A web app for building **vNAS ATCTrainer** training scenarios, the scenarios
 that fly the traffic you control in **CRC** on the sweatbox servers.
 
